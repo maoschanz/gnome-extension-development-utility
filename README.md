@@ -1,4 +1,4 @@
-##Extension Development Utility extension-development-utility
+## Extension Development Utility
 
 >2017-04-20
 
@@ -22,4 +22,4 @@ I will not propose this extension on the official gnome extensions
 website since the almost equivalent nls1729's "Gnome Shell Extension 
 Reloader" is already on it.
 
->available in French and approximative English
+>available in French and in approximative English
