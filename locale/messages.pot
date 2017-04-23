@@ -1,0 +1,102 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: extension-development-utility\n"
+"Report-Msgid-Bugs-To: <>\n"
+"POT-Creation-Date: 2016-12-23 09:33-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: prefs.js:59
+msgid "Button Location :"
+msgstr ""
+
+#: prefs.js:61
+msgid "Center Left"
+msgstr ""
+
+#: prefs.js:62
+msgid "Center Right"
+msgstr ""
+
+#: prefs.js:63
+msgid "Right"
+msgstr ""
+
+#: prefs.js:64
+msgid "Far Right"
+msgstr ""
+
+#: prefs.js:114
+msgid "Open extensions submenu by default"
+msgstr ""
+
+
+#: extension.js:114
+msgid "Enabled"
+msgstr ""
+
+#: extension.js:114
+msgid "Disabled"
+msgstr ""
+
+#: extension.js:114
+msgid "Error"
+msgstr ""
+
+#: extension.js:114
+msgid "Out of Date"
+msgstr ""
+
+#: extension.js:114
+msgid "Downloading"
+msgstr ""
+
+#: extension.js:114
+msgid "Initialized"
+msgstr ""
+
+#: extension.js:114
+msgid "Restart Shell (Xorg only)"
+msgstr ""
+
+#: extension.js:114
+msgid "Reload Theme"
+msgstr ""
+
+#: extension.js:114
+msgid "Reload Extensions"
+msgstr ""
+
+#: extension.js:114
+msgid "Open Local Extensions Folder"
+msgstr ""
+
+#: extension.js:114
+msgid "Open Extensions Website"
+msgstr ""
+
+#: extension.js:114
+msgid "Restart is not available on Wayland"
+msgstr ""
+
+#: extension.js:114
+msgid "Restarting…"
+msgstr ""
+
+
+#: extension.js:114
+msgid "Error reloading"
+msgstr ""
+
+#: extension.js:111 extension.js:112
+msgid "Reloading completed"
+msgstr ""
+
+
