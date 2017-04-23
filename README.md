@@ -16,10 +16,12 @@ time for the extension writer.
 
 "Extension Development Utility" also provides a mouse access to Looking
 Glass, a quick access to the extensions folders, and for Xorg users, a
-way to reload the whole Shell with the mouse.
+way to reload the whole Shell with the mouse (no more need to do alt+f2).
 
 I will not propose this extension on the official gnome extensions
 website since the almost equivalent nls1729's "Gnome Shell Extension 
 Reloader" is already on it.
 
 >available in French and in approximative English
+
+![Screenshot](https://raw.githubusercontent.com/Maestroschan/gnome-extension-development-utility/master/Capture%20d'%C3%A9cran%20de%202017-04-23%2015-30-43.png)
