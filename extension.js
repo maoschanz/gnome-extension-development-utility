@@ -1,7 +1,7 @@
 /*
   Extension Development Utility
 
-  Copyright (c) 2016 Norman L. Smith, Maestroschan
+  Copyright (c) 2016 Norman L. Smith, Romain F. T.
 
   This extension is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License
@@ -52,10 +52,10 @@ const _ = Gettext.gettext;
 const Convenience = Me.imports.convenience;
 
 const ENABLED = 1;
-const ICON = [ 'dialog-information-symbolic',
-			   'dialog-warning-symbolic',
-			   'dialog-error-symbolic'
-			 ];
+const ICON = [	'dialog-information-symbolic',
+				'dialog-warning-symbolic',
+				'dialog-error-symbolic'
+				];
 const MAX_HEIGHT = parseInt(global.screen_height * 0.95).toString();
 const ROLE = 'extension-reloader-indicator';
 let STATE;
@@ -110,11 +110,6 @@ const SubMenuItem = new Lang.Class({
 		try {
 			ExtensionSystem.reloadExtension(this._extension);
 			
-			/*FIXME*/
-//			Gio.Schema() ????
-//			set_boolean(false) ?
-//			set_boolean(true) ?
-			
 			Notify.notify(_("Reloading completed"), this._name, TYPE.info);
 			log("Reloading completed" + ' : ' + this._name + ' : ' + this._uuid);
 		} catch(e) {
@@ -144,6 +139,8 @@ const ExtensionDevelopmentUtilityMenu = new Lang.Class({
 		this._timeoutId = 0
 		this.actor.add_actor(hbox);
 		
+		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
+		
 		this.lookingGlass = new PopupMenu.PopupMenuItem("Looking Glass");
 		this.menu.addMenuItem(this.lookingGlass);
 		this.lookingGlass.connect('activate', Lang.bind(this, this._onLookingGlass));
@@ -159,7 +156,6 @@ const ExtensionDevelopmentUtilityMenu = new Lang.Class({
 		this.menu.addMenuItem(this.garbageCollector);
 		this.garbageCollector.connect('activate', Lang.bind(this, this._onGC));
 		
-//		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
 //		this.higherPriority = new PopupMenu.PopupMenuItem(_("Give high priority"));
 //		this.menu.addMenuItem(this.higherPriority);
 //		this.higherPriority.connect('activate', Lang.bind(this, this._onHigherPriority));
@@ -449,3 +445,4 @@ function init(metadata) {
 	STATE = [_("Unknown"), _("Enabled"), _("Disabled"), _("Error"), _("Out of Date"), _("Downloading"), _("Initialized")];
 	return new ExtensionDevelopmentUtilityExtension();
 }
+
