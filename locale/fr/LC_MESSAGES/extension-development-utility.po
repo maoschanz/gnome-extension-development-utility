@@ -1,1 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: extension-development-utility\n"
+"Report-Msgid-Bugs-To: <>\n"
+"POT-Creation-Date: 2016-12-23 09:33-0500\n"
+"PO-Revision-Date: 2017-04-20 21:38+0200\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 1.8.11\n"
 
+#: prefs.js:59
+msgid "Button Location :"
+msgstr "Emplacement du bouton :"
+
+#: prefs.js:61
+msgid "Center Left"
+msgstr "À gauche de l'horloge"
+
+#: prefs.js:62
+msgid "Center Right"
+msgstr "À droite de l'horloge"
+
+#: prefs.js:62
+msgid "Right"
+msgstr "À droite"
+
+#: prefs.js:62
+msgid "Far Right"
+msgstr "À l'extrême-droite"
+
+#: prefs.js:114
+msgid "Open extensions submenu by default"
+msgstr "Ouvrir par défaut le sous-menu des extensions"
+
+#: extension.js:114
+msgid "Enabled"
+msgstr "Activé"
+
+#: extension.js:114
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: extension.js:114
+msgid "Error"
+msgstr "Erreur"
+
+#: extension.js:114
+msgid "Out of Date"
+msgstr "Obsolète"
+
+#: extension.js:114
+msgid "See logs"
+msgstr "Voir les logs"
+
+#: extension.js:114
+msgid "Collect garbage"
+msgstr "Collecter les déchets"
+
+#: extension.js:114
+msgid "Kill current app"
+msgstr "Tuer l'application courante"
+
+#: extension.js:114
+msgid "Downloading"
+msgstr "[Téléchargement]"
+
+#: extension.js:114
+msgid "Initialized"
+msgstr "Initialisé"
+
+#: extension.js:114
+msgid "Restart An Extension"
+msgstr "Redémarrer une extension"
+
+#: extension.js:114
+msgid "Restart GNOME Shell"
+msgstr "Redémarrer GNOME Shell"
+
+#: extension.js:114
+msgid "Reload Theme"
+msgstr "Recharger le thème"
+
+#: extension.js:114
+msgid "Reload All Extensions"
+msgstr "Recharger toutes les extensions"
+
+#: extension.js:114
+msgid "Open Local Extensions Folder"
+msgstr "Ouvrir le dossier des extensions"
+
+#: extension.js:114
+msgid "Manage Extensions"
+msgstr "Gérer les extensions"
+
+#: extension.js:114
+msgid "Restart is not available on Wayland"
+msgstr "Le redémarrage n'est pas disponible sur Wayland"
+
+#: extension.js:114
+msgid "Restarting…"
+msgstr "Redémarrage en cours"
+
+#: extension.js:114
+msgid "Error reloading"
+msgstr "Erreur de chargement"
+
+#: extension.js:111 extension.js:112
+msgid "Reloading completed"
+msgstr "Chargement complet"
