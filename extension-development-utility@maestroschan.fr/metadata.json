@@ -4,14 +4,10 @@
   "name": "Extension Development Utility", 
   "gettext-domain": "extension-development-utility", 
   "shell-version": [
-    "3.14", 
-    "3.16", 
-    "3.18", 
-    "3.20", 
-    "3.22", 
     "3.26", 
     "3.28", 
-    "3.30"
+    "3.30", 
+    "3.32"
   ], 
   "url": "https://github.com/maoschanz/gnome-extension-development-utility", 
   "uuid": "extension-development-utility@maestroschan.fr", 

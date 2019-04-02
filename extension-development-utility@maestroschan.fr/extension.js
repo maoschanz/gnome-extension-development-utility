@@ -1,5 +1,4 @@
 
-const Lang = imports.lang;
 const St = imports.gi.St;
 const Panel = imports.ui.panel;
 const Main = imports.ui.main;
@@ -10,8 +9,6 @@ const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
 const Slider = imports.ui.slider;
-
-const GTop = imports.gi.GTop; //gir1.2-gtop-2.0
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -24,99 +21,65 @@ const TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 const EXEC_KEY = 'exec';
 const EXEC_ARG_KEY = 'exec-arg';
 
-//-------------------------------------------------
-
 function init() {
 	Convenience.initTranslations();
 }
 
 //---------------------------------
 
-const ExtensionsButtonsItem = new Lang.Class({
-	Name: 'ExtensionsButtonsItem',
-	Extends: PopupMenu.PopupBaseMenuItem,
+class ExtensionsButtonsItem {
 
-	_init: function() {
-		
-		this.parent({ reactive: false, can_focus: false });
-		
+	constructor () {
+		this.super_item = new PopupMenu.PopupBaseMenuItem({ reactive: false, can_focus: false });
 		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
 		
-		this.prefsButton = new St.Button({
+		this._addButton(_("Extensions preferences"), 'system-run-symbolic', this._openPrefs);
+		this._addButton(_("See logs"), 'utilities-terminal-symbolic', this._seeLogs);
+		this._addButton( _("Reload GNOME Shell"), 'view-refresh-symbolic', this._reloadGS);
+		this._addButton(_("Looking Glass"), 'system-search-symbolic', this._openLookingGlass);
+	}
+
+	_addButton (accessible_name, icon_name, callback) {
+		let newButton = new St.Button({
 			reactive: true,
 			can_focus: true,
 			track_hover: true,
-			accessible_name: _("Extensions preferences"),
+			accessible_name: accessible_name,
 			style_class: 'system-menu-action',
 		});
-		this.prefsButton.child = new St.Icon({ icon_name: 'system-run-symbolic' });
+		newButton.child = new St.Icon({ icon_name: icon_name });
 		
-		this.seeLogsButton = new St.Button({
-			reactive: true,
-			can_focus: true,
-			track_hover: true,
-			accessible_name: _("See logs"),
-			style_class: 'system-menu-action',
-		});
-		this.seeLogsButton.child = new St.Icon({ icon_name: 'utilities-terminal-symbolic' });
-		
-		this.restartButton = new St.Button({
-			reactive: true,
-			can_focus: true,
-			track_hover: true,
-			accessible_name: _("Reload GNOME Shell"),
-			style_class: 'system-menu-action',
-		});
-		this.restartButton.child = new St.Icon({ icon_name: 'view-refresh-symbolic' });
-		
-		this.lgButton = new St.Button({
-			reactive: true,
-			can_focus: true,
-			track_hover: true,
-			accessible_name: _("Looking Glass"),
-			style_class: 'system-menu-action',
-		});
-		this.lgButton.child = new St.Icon({ icon_name: 'system-search-symbolic' });
-		
-		this.actor.add(this.prefsButton, { expand: true, x_fill: false });
-		this.actor.add(this.seeLogsButton, { expand: true, x_fill: false });
-		this.actor.add(this.restartButton, { expand: true, x_fill: false });
-		this.actor.add(this.lgButton, { expand: true, x_fill: false });
-		
-		this.lgButton.connect('clicked', Lang.bind(this, this._openLookingGlass));
-		this.prefsButton.connect('clicked', Lang.bind(this, this._openPrefs));
-		this.restartButton.connect('clicked', Lang.bind(this, this._reloadGS));
-		this.seeLogsButton.connect('clicked', Lang.bind(this, this._seeLogs));
-	},
-	
-	_openPrefs: function() {
+		this.super_item.actor.add(newButton, { expand: true, x_fill: false });
+		newButton.connect('clicked', callback.bind(this));
+	}
+
+	_openPrefs () {
 		Util.trySpawnCommandLine('gnome-shell-extension-prefs');
 		Main.panel.statusArea.aggregateMenu.menu.close();
-	},
-	
-	_openLookingGlass: function() {
+	}
+
+	_openLookingGlass () {
 		Main.createLookingGlass().toggle();
 		Main.panel.statusArea.aggregateMenu.menu.close();
-	},
-	
-	_reloadGS: function() {
+	}
+
+	_reloadGS () {
 		Main.panel.statusArea.aggregateMenu.menu.close();
 		if (Meta.is_wayland_compositor()) {
 			this._showError(_("Restart is not available on Wayland"));
 			return;
 		}
 		Meta.restart(_("Restarting…"));
-	},
-	
-	_seeLogs: function() {
+	}
+
+	_seeLogs () {
 		let exec1 = this._terminalSettings.get_string(EXEC_KEY);
 		let exec_arg = this._terminalSettings.get_string(EXEC_ARG_KEY);
 		let command = exec1 + ' ' + exec_arg + ' pkexec journalctl -f /usr/bin/gnome-shell';
 		Util.trySpawnCommandLine(command);
 		Main.panel.statusArea.aggregateMenu.menu.close();
-	},
-	
-});
+	}
+};
 
 let my_section;
 
@@ -124,7 +87,7 @@ function enable() {
 	let aggregateMenu = Main.panel.statusArea.aggregateMenu;
 	
 	my_section = new PopupMenu.PopupMenuSection();
-	my_section.addMenuItem(new ExtensionsButtonsItem());
+	my_section.addMenuItem(new ExtensionsButtonsItem().super_item);
 	
 	aggregateMenu._extensions = my_section;
 	aggregateMenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem, 0);
