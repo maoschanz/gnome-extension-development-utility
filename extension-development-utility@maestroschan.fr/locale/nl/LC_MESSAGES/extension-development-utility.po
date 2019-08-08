@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-21 11:55+0100\n"
+"PO-Revision-Date: 2019-08-05 20:02+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.3\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: extension-development-utility@maestroschan.fr/extension.js:49
+msgid "Extensions preferences"
+msgstr "Voorkeuren"
+
+#: extension-development-utility@maestroschan.fr/extension.js:58
+msgid "See logs"
+msgstr "Logbestanden bekijken"
+
+#: extension-development-utility@maestroschan.fr/extension.js:67
+msgid "Reload GNOME Shell"
+msgstr "GNOME Shell herstarten"
+
+#: extension-development-utility@maestroschan.fr/extension.js:76
+msgid "Looking Glass"
+msgstr "Looking Glass"
+
+#: extension-development-utility@maestroschan.fr/extension.js:105
+msgid "Restart is not available on Wayland"
+msgstr "De optie 'Herstarten' is niet beschkbaar op Wayland"
+
+#: extension-development-utility@maestroschan.fr/extension.js:108
+msgid "Restarting…"
+msgstr "Bezig met herstarten…"
