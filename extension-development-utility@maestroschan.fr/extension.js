@@ -1,3 +1,4 @@
+// GPLv3
 
 const St = imports.gi.St;
 const Panel = imports.ui.panel;
@@ -30,13 +31,47 @@ function init() {
 class ExtensionsButtonsItem {
 
 	constructor () {
-		this.super_item = new PopupMenu.PopupBaseMenuItem({ reactive: false, can_focus: false });
+		this.super_item = new PopupMenu.PopupBaseMenuItem({
+			reactive: false,
+			can_focus: false
+		});
 		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
-		
-		this._addButton(_("Extensions preferences"), 'system-run-symbolic', this._openPrefs);
-		this._addButton(_("See logs"), 'utilities-terminal-symbolic', this._seeLogs);
-		this._addButton( _("Reload GNOME Shell"), 'view-refresh-symbolic', this._reloadGS);
-		this._addButton(_("Looking Glass"), 'system-search-symbolic', this._openLookingGlass);
+		let buttons_array = Convenience.getSettings().get_strv('buttons');
+		for (let i=0; i < buttons_array.length; i++) {
+			this._loadButton(buttons_array[i]);
+		}
+	}
+	
+	_loadButton (button_id) {
+		let accessible_name;
+		let icon_name;
+		let callback;
+		switch (button_id) {
+			case 'prefs':
+				accessible_name = _("Extensions preferences");
+				icon_name = 'preferences-other-symbolic';
+				callback = this._openPrefs;
+			break;
+			case 'logs':
+				accessible_name = _("See GNOME Shell log");
+				icon_name = 'utilities-terminal-symbolic';
+				callback = this._seeLogs;
+			break;
+			case 'restart':
+				accessible_name = _("Reload GNOME Shell");
+				icon_name = 'view-refresh-symbolic';
+				callback = this._reloadGS;
+			break;
+			case 'lg':
+				accessible_name = _("'Looking Glass' debugging tool");
+				icon_name = 'system-run-symbolic';
+				callback = this._openLookingGlass;
+			break;
+			default:
+				return;
+			break;
+		}
+		this._addButton(accessible_name, icon_name, callback);
 	}
 
 	_addButton (accessible_name, icon_name, callback) {
@@ -52,6 +87,8 @@ class ExtensionsButtonsItem {
 		this.super_item.actor.add(newButton, { expand: true, x_fill: false });
 		newButton.connect('clicked', callback.bind(this));
 	}
+
+	// Signal callbacks
 
 	_openPrefs () {
 		Util.trySpawnCommandLine('gnome-shell-extension-prefs');
@@ -75,9 +112,29 @@ class ExtensionsButtonsItem {
 	_seeLogs () {
 		let exec1 = this._terminalSettings.get_string(EXEC_KEY);
 		let exec_arg = this._terminalSettings.get_string(EXEC_ARG_KEY);
-		let command = exec1 + ' ' + exec_arg + ' pkexec journalctl -f /usr/bin/gnome-shell';
+		let command = this._getCommandPrefix() + 'journalctl -f /usr/bin/gnome-shell';
 		Util.trySpawnCommandLine(command);
 		Main.panel.statusArea.aggregateMenu.menu.close();
+	}
+	
+	// Misc
+	
+	_getCommandPrefix () {
+		let userPrefix = Convenience.getSettings().get_string('term-prefix');
+		let command = '';
+		if (userPrefix == '') {
+			let exec1 = this._terminalSettings.get_string(EXEC_KEY);
+			let exec_arg = this._terminalSettings.get_string(EXEC_ARG_KEY);
+			command = exec1 + ' ' + exec_arg;
+		} else {
+			command = userPrefix;
+		}
+		if (Convenience.getSettings().get_boolean('use-sudo')) {
+			command = command + ' sudo ';
+		} else {
+			command = command + ' pkexec ';
+		}
+		return command;
 	}
 };
 

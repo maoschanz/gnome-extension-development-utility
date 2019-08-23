@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="extension-development-utility">
+	<schema id="org.gnome.shell.extensions.extension-development-utility"
+	path="/org/gnome/shell/extensions/extension-development-utility/">
+	<key type="as" name="buttons">
+		<default>['prefs', 'logs', 'restart', 'lg']</default>
+		<summary>List of buttons to display in the system menu</summary>
+		<description>A list of buttons to display in the system menu. Possible
+		values are 'prefs', 'logs', 'restart', and 'lg'.</description>
+	</key>
+	<key type="b" name="use-sudo">
+		<default>true</default>
+		<summary>If the extension should use sudo</summary>
+		<description>If true, the extension will use sudo instead of pkexec to
+		get the administrative privileges (needed to see logs).</description>
+	</key>
+	<key type="s" name="term-prefix">
+		<default>''</default>
+		<summary>Terminal (with command-launching option)</summary>
+		<description>For example 'gnome-terminal --' or 'tilix -e'
+		Let empty for using the system default terminal.</description>
+	</key>
+	</schema>
+</schemalist>

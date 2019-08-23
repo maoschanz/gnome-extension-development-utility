@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-21 11:55+0100\n"
+"POT-Creation-Date: 2019-08-23 15:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,72 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension-development-utility@maestroschan.fr/extension.js:49
+#: extension-development-utility@maestroschan.fr/extension.js:51
+#: extension-development-utility@maestroschan.fr/prefs.js:107
 msgid "Extensions preferences"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:58
-msgid "See logs"
+#: extension-development-utility@maestroschan.fr/extension.js:56
+#: extension-development-utility@maestroschan.fr/prefs.js:111
+msgid "See GNOME Shell log"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:67
+#: extension-development-utility@maestroschan.fr/extension.js:61
+#: extension-development-utility@maestroschan.fr/prefs.js:115
 msgid "Reload GNOME Shell"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:76
-msgid "Looking Glass"
+#: extension-development-utility@maestroschan.fr/extension.js:66
+#: extension-development-utility@maestroschan.fr/prefs.js:119
+msgid "'Looking Glass' debugging tool"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:105
+#: extension-development-utility@maestroschan.fr/extension.js:106
 msgid "Restart is not available on Wayland"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:108
+#: extension-development-utility@maestroschan.fr/extension.js:109
 msgid "Restarting…"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:57
+msgid "Terminal"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:59
+msgid "Use sudo instead of pkexec"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:60
+msgid ""
+"Seeing logs often require admin privileges. They can often be obtained using "
+"pkexec, but some systems don't support it."
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:71
+msgid "Terminal emulator"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:72
+msgid "(with command-launching option)"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:73
+msgid "For example 'gnome-terminal --' or 'tilix -e'"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:74
+msgid "Let empty for using the system default terminal."
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:78
+msgid "About"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:81
+msgid "Report bugs or ideas"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:98
+msgid "Author:"
 msgstr ""
