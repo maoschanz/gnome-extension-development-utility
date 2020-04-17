@@ -80,9 +80,15 @@ class ExtensionsButtonsItem {
 			can_focus: true,
 			track_hover: true,
 			accessible_name: accessible_name,
-			style_class: 'system-menu-action',
+			style_class: 'button',
+			style: 'padding-right: 12px; padding-left: 12px;',
+			y_expand: false,
+			y_fill: true,
 		});
-		newButton.child = new St.Icon({ icon_name: icon_name });
+		newButton.child = new St.Icon({
+			icon_name: icon_name,
+			icon_size: 16,
+		});
 		
 		this.super_item.actor.add(newButton, { expand: true, x_fill: false });
 		newButton.connect('clicked', callback.bind(this));
