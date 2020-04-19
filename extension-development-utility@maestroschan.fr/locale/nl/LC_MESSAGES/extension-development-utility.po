@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 16:52+0200\n"
+"POT-Creation-Date: 2020-04-19 18:50+0200\n"
 "PO-Revision-Date: 2019-08-05 20:02+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -18,31 +18,27 @@ msgstr ""
 "X-Generator: Poedit 2.2.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension-development-utility@maestroschan.fr/extension.js:61
+#: extension-development-utility@maestroschan.fr/extension.js:86
 msgid "Extensions preferences"
 msgstr "Voorkeuren"
 
-#: extension-development-utility@maestroschan.fr/extension.js:66
+#: extension-development-utility@maestroschan.fr/extension.js:91
 msgid "See GNOME Shell log"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:74
+#: extension-development-utility@maestroschan.fr/extension.js:99
 msgid "Reload GNOME Shell"
 msgstr "GNOME Shell herstarten"
 
-#: extension-development-utility@maestroschan.fr/extension.js:79
+#: extension-development-utility@maestroschan.fr/extension.js:104
 msgid "Windowed session (Wayland)"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:84
+#: extension-development-utility@maestroschan.fr/extension.js:109
 msgid "'Looking Glass' debugging tool"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:135
-msgid "Restart is not available on Wayland"
-msgstr "De optie 'Herstarten' is niet beschkbaar op Wayland"
-
-#: extension-development-utility@maestroschan.fr/extension.js:138
+#: extension-development-utility@maestroschan.fr/extension.js:162
 msgid "Restarting…"
 msgstr "Bezig met herstarten…"
 
@@ -101,6 +97,9 @@ msgstr ""
 #: extension-development-utility@maestroschan.fr/prefs.js:106
 msgid "Author:"
 msgstr ""
+
+#~ msgid "Restart is not available on Wayland"
+#~ msgstr "De optie 'Herstarten' is niet beschkbaar op Wayland"
 
 #~ msgid "Looking Glass"
 #~ msgstr "Looking Glass"

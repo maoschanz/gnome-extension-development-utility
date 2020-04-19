@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extension-development-utility\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 16:52+0200\n"
+"POT-Creation-Date: 2020-04-19 18:50+0200\n"
 "PO-Revision-Date: 2017-04-20 21:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -13,31 +13,27 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.11\n"
 
-#: extension-development-utility@maestroschan.fr/extension.js:61
+#: extension-development-utility@maestroschan.fr/extension.js:86
 msgid "Extensions preferences"
 msgstr "Préférences des extensions"
 
-#: extension-development-utility@maestroschan.fr/extension.js:66
+#: extension-development-utility@maestroschan.fr/extension.js:91
 msgid "See GNOME Shell log"
 msgstr "Voir le journal de GNOME Shell"
 
-#: extension-development-utility@maestroschan.fr/extension.js:74
+#: extension-development-utility@maestroschan.fr/extension.js:99
 msgid "Reload GNOME Shell"
 msgstr "Recharger GNOME Shell"
 
-#: extension-development-utility@maestroschan.fr/extension.js:79
+#: extension-development-utility@maestroschan.fr/extension.js:104
 msgid "Windowed session (Wayland)"
 msgstr "Session fenêtrée (Wayland)"
 
-#: extension-development-utility@maestroschan.fr/extension.js:84
+#: extension-development-utility@maestroschan.fr/extension.js:109
 msgid "'Looking Glass' debugging tool"
 msgstr "Outil de débug 'Looking Glass'"
 
-#: extension-development-utility@maestroschan.fr/extension.js:135
-msgid "Restart is not available on Wayland"
-msgstr "Le redémarrage n'est pas disponible sur Wayland"
-
-#: extension-development-utility@maestroschan.fr/extension.js:138
+#: extension-development-utility@maestroschan.fr/extension.js:162
 msgid "Restarting…"
 msgstr "Redémarrage en cours…"
 

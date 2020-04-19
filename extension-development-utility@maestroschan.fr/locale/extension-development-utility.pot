@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 16:52+0200\n"
+"POT-Creation-Date: 2020-04-19 18:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension-development-utility@maestroschan.fr/extension.js:61
+#: extension-development-utility@maestroschan.fr/extension.js:86
 msgid "Extensions preferences"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:66
+#: extension-development-utility@maestroschan.fr/extension.js:91
 msgid "See GNOME Shell log"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:74
+#: extension-development-utility@maestroschan.fr/extension.js:99
 msgid "Reload GNOME Shell"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:79
+#: extension-development-utility@maestroschan.fr/extension.js:104
 msgid "Windowed session (Wayland)"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:84
+#: extension-development-utility@maestroschan.fr/extension.js:109
 msgid "'Looking Glass' debugging tool"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:135
-msgid "Restart is not available on Wayland"
-msgstr ""
-
-#: extension-development-utility@maestroschan.fr/extension.js:138
+#: extension-development-utility@maestroschan.fr/extension.js:162
 msgid "Restarting…"
 msgstr ""
 

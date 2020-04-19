@@ -22,13 +22,38 @@ const TERMINAL_SCHEMA = 'org.gnome.desktop.default-applications.terminal';
 const EXEC_KEY = 'exec';
 const EXEC_ARG_KEY = 'exec-arg';
 
+let terminalSettings;
+
 function init() {
 	Convenience.initTranslations();
+	terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
+}
+
+function getCommandPrefix(asAdmin) {
+	let userPrefix = Convenience.getSettings().get_string('term-prefix');
+	let command = '';
+	if (userPrefix == '') {
+		let exec1 = terminalSettings.get_string(EXEC_KEY);
+		let exec_arg = terminalSettings.get_string(EXEC_ARG_KEY);
+		command = exec1 + ' ' + exec_arg;
+	} else {
+		command = userPrefix;
+	}
+	if (asAdmin) {
+		if (Convenience.getSettings().get_boolean('use-sudo')) {
+			command = command + ' sudo ';
+		} else {
+			command = command + ' pkexec ';
+		}
+	} else {
+		command = command + ' ';
+	}
+	return command;
 }
 
 //------------------------------------------------------------------------------
 
-class ExtensionsButtonsItem {
+class ExtensionSectionBuilder {
 
 	constructor(menuSection) {
 		this.parentSection = menuSection;
@@ -44,7 +69,7 @@ class ExtensionsButtonsItem {
 		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
 		let buttons_array = Convenience.getSettings().get_strv('buttons');
 		for (let i=0; i < buttons_array.length; i++) {
-			this._loadButton(buttons_array[i], showAsButtons);
+			this._loadActionItem(buttons_array[i], showAsButtons);
 		}
 	}
 
@@ -52,11 +77,11 @@ class ExtensionsButtonsItem {
 		return this.parentSection;
 	}
 
-	_loadButton(button_id, showAsButtons) {
+	_loadActionItem(buttonId, showAsButtons) {
 		let accessibleName;
 		let iconName;
 		let callback;
-		switch (button_id) {
+		switch (buttonId) {
 			case 'prefs':
 				accessibleName = _("Extensions preferences");
 				iconName = 'preferences-other-symbolic';
@@ -132,7 +157,6 @@ class ExtensionsButtonsItem {
 		Main.panel.statusArea.aggregateMenu.menu.close();
 		if (Meta.is_wayland_compositor()) {
 			// Should never be executed since the button isn't shown on Wayland
-			this._showError(_("Restart is not available on Wayland"));
 			return;
 		}
 		Meta.restart(_("Restarting…"));
@@ -140,50 +164,22 @@ class ExtensionsButtonsItem {
 
 	_nestedInstance() {
 		let gnomeShellCommand = 'gnome-shell --nested --wayland'
-		Util.trySpawnCommandLine(this._getCommandPrefix(false) +
+		Util.trySpawnCommandLine(getCommandPrefix(false) +
 		                            'dbus-run-session -- ' + gnomeShellCommand);
 		Main.panel.statusArea.aggregateMenu.menu.close();
 	}
 
 	_seeLogs() {
-		let exec1 = this._terminalSettings.get_string(EXEC_KEY);
-		let exec_arg = this._terminalSettings.get_string(EXEC_ARG_KEY);
-		let command = this._getCommandPrefix(true) + 'journalctl -f /usr/bin/gnome-shell';
+		let command = getCommandPrefix(true) + 'journalctl -f /usr/bin/gnome-shell';
 		Util.trySpawnCommandLine(command);
 		Main.panel.statusArea.aggregateMenu.menu.close();
-	}
-
-	// Misc --------------------------------------------------------------------
-
-	_getCommandPrefix(asAdmin) {
-		let userPrefix = Convenience.getSettings().get_string('term-prefix');
-		let command = '';
-		if (userPrefix == '') {
-			let exec1 = this._terminalSettings.get_string(EXEC_KEY);
-			let exec_arg = this._terminalSettings.get_string(EXEC_ARG_KEY);
-			command = exec1 + ' ' + exec_arg;
-		} else {
-			command = userPrefix;
-		}
-		if (asAdmin) {
-			if (Convenience.getSettings().get_boolean('use-sudo')) {
-				command = command + ' sudo ';
-			} else {
-				command = command + ' pkexec ';
-			}
-		} else {
-			command = command + ' ';
-		}
-		return command;
 	}
 };
 
 //------------------------------------------------------------------------------
 
-let my_section;
-
 function enable() {
-	buttonsItem = new ExtensionsButtonsItem(new PopupMenu.PopupMenuSection());
+	let buttonsItem = new ExtensionSectionBuilder(new PopupMenu.PopupMenuSection());
 
 	let aggregateMenu = Main.panel.statusArea.aggregateMenu;
 	aggregateMenu._extensions = buttonsItem.getMenuSection();
