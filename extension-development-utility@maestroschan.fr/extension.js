@@ -26,106 +26,136 @@ function init() {
 	Convenience.initTranslations();
 }
 
-//---------------------------------
+//------------------------------------------------------------------------------
 
 class ExtensionsButtonsItem {
 
-	constructor () {
-		this.super_item = new PopupMenu.PopupBaseMenuItem({
-			reactive: false,
-			can_focus: false
-		});
+	constructor(menuSection) {
+		this.parentSection = menuSection;
+		let showAsButtons = Convenience.getSettings().get_boolean('items-layout');
+		if (showAsButtons) {
+			this.superItem = new PopupMenu.PopupBaseMenuItem({
+				reactive: false,
+				can_focus: false
+			});
+			this.parentSection.addMenuItem(this.superItem);
+		}
+
 		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
 		let buttons_array = Convenience.getSettings().get_strv('buttons');
 		for (let i=0; i < buttons_array.length; i++) {
-			this._loadButton(buttons_array[i]);
+			this._loadButton(buttons_array[i], showAsButtons);
 		}
 	}
-	
-	_loadButton (button_id) {
-		let accessible_name;
-		let icon_name;
+
+	getMenuSection() {
+		return this.parentSection;
+	}
+
+	_loadButton(button_id, showAsButtons) {
+		let accessibleName;
+		let iconName;
 		let callback;
 		switch (button_id) {
 			case 'prefs':
-				accessible_name = _("Extensions preferences");
-				icon_name = 'preferences-other-symbolic';
+				accessibleName = _("Extensions preferences");
+				iconName = 'preferences-other-symbolic';
 				callback = this._openPrefs;
 			break;
 			case 'logs':
-				accessible_name = _("See GNOME Shell log");
-				icon_name = 'utilities-terminal-symbolic';
+				accessibleName = _("See GNOME Shell log");
+				iconName = 'utilities-terminal-symbolic';
 				callback = this._seeLogs;
 			break;
 			case 'restart':
-				accessible_name = _("Reload GNOME Shell");
-				icon_name = 'view-refresh-symbolic';
+				if (Meta.is_wayland_compositor()) {
+					return;
+				}
+				accessibleName = _("Reload GNOME Shell");
+				iconName = 'view-refresh-symbolic';
 				callback = this._reloadGS;
 			break;
+			case 'nested':
+				accessibleName = _("Windowed session (Wayland)");
+				iconName = 'window-new-symbolic';
+				callback = this._nestedInstance;
+			break;
 			case 'lg':
-				accessible_name = _("'Looking Glass' debugging tool");
-				icon_name = 'system-run-symbolic';
+				accessibleName = _("'Looking Glass' debugging tool");
+				iconName = 'system-run-symbolic';
 				callback = this._openLookingGlass;
 			break;
 			default:
 				return;
 			break;
 		}
-		this._addButton(accessible_name, icon_name, callback);
+		if (showAsButtons) {
+			this._addButton(accessibleName, iconName, callback);
+		} else {
+			this.parentSection.addAction(accessibleName, callback, iconName);
+		}
 	}
 
-	_addButton (accessible_name, icon_name, callback) {
+	_addButton(accessibleName, iconName, callback) {
 		let newButton = new St.Button({
 			reactive: true,
 			can_focus: true,
 			track_hover: true,
-			accessible_name: accessible_name,
+			accessible_name: accessibleName,
 			style_class: 'button',
 			style: 'padding-right: 12px; padding-left: 12px;',
 			y_expand: false,
 			y_fill: true,
 		});
 		newButton.child = new St.Icon({
-			icon_name: icon_name,
+			icon_name: iconName,
 			icon_size: 16,
 		});
 		
-		this.super_item.actor.add(newButton, { expand: true, x_fill: false });
+		this.superItem.actor.add(newButton, { expand: true, x_fill: false });
 		newButton.connect('clicked', callback.bind(this));
 	}
 
-	// Signal callbacks
+	// Signal callbacks --------------------------------------------------------
 
-	_openPrefs () {
+	_openPrefs() {
 		Util.trySpawnCommandLine('gnome-shell-extension-prefs');
 		Main.panel.statusArea.aggregateMenu.menu.close();
 	}
 
-	_openLookingGlass () {
+	_openLookingGlass() {
 		Main.createLookingGlass().toggle();
 		Main.panel.statusArea.aggregateMenu.menu.close();
 	}
 
-	_reloadGS () {
+	_reloadGS() {
 		Main.panel.statusArea.aggregateMenu.menu.close();
 		if (Meta.is_wayland_compositor()) {
+			// Should never be executed since the button isn't shown on Wayland
 			this._showError(_("Restart is not available on Wayland"));
 			return;
 		}
 		Meta.restart(_("Restarting…"));
 	}
 
-	_seeLogs () {
+	_nestedInstance() {
+		let gnomeShellCommand = 'gnome-shell --nested --wayland'
+		Util.trySpawnCommandLine(this._getCommandPrefix(false) +
+		                            'dbus-run-session -- ' + gnomeShellCommand);
+		Main.panel.statusArea.aggregateMenu.menu.close();
+	}
+
+	_seeLogs() {
 		let exec1 = this._terminalSettings.get_string(EXEC_KEY);
 		let exec_arg = this._terminalSettings.get_string(EXEC_ARG_KEY);
-		let command = this._getCommandPrefix() + 'journalctl -f /usr/bin/gnome-shell';
+		let command = this._getCommandPrefix(true) + 'journalctl -f /usr/bin/gnome-shell';
 		Util.trySpawnCommandLine(command);
 		Main.panel.statusArea.aggregateMenu.menu.close();
 	}
-	
-	// Misc
-	
-	_getCommandPrefix () {
+
+	// Misc --------------------------------------------------------------------
+
+	_getCommandPrefix(asAdmin) {
 		let userPrefix = Convenience.getSettings().get_string('term-prefix');
 		let command = '';
 		if (userPrefix == '') {
@@ -135,24 +165,28 @@ class ExtensionsButtonsItem {
 		} else {
 			command = userPrefix;
 		}
-		if (Convenience.getSettings().get_boolean('use-sudo')) {
-			command = command + ' sudo ';
+		if (asAdmin) {
+			if (Convenience.getSettings().get_boolean('use-sudo')) {
+				command = command + ' sudo ';
+			} else {
+				command = command + ' pkexec ';
+			}
 		} else {
-			command = command + ' pkexec ';
+			command = command + ' ';
 		}
 		return command;
 	}
 };
 
+//------------------------------------------------------------------------------
+
 let my_section;
 
 function enable() {
+	buttonsItem = new ExtensionsButtonsItem(new PopupMenu.PopupMenuSection());
+
 	let aggregateMenu = Main.panel.statusArea.aggregateMenu;
-	
-	my_section = new PopupMenu.PopupMenuSection();
-	my_section.addMenuItem(new ExtensionsButtonsItem().super_item);
-	
-	aggregateMenu._extensions = my_section;
+	aggregateMenu._extensions = buttonsItem.getMenuSection();
 	aggregateMenu.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem, 0);
 	aggregateMenu.menu.addMenuItem(aggregateMenu._extensions, 0);
 }
@@ -160,4 +194,5 @@ function enable() {
 function disable() {
 	Main.panel.statusArea.aggregateMenu._extensions.destroy();
 }
+
 

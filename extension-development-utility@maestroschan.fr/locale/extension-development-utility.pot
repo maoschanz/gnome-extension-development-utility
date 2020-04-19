@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-08-23 15:59+0200\n"
+"POT-Creation-Date: 2020-04-19 16:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension-development-utility@maestroschan.fr/extension.js:51
-#: extension-development-utility@maestroschan.fr/prefs.js:107
+#: extension-development-utility@maestroschan.fr/extension.js:61
 msgid "Extensions preferences"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:56
-#: extension-development-utility@maestroschan.fr/prefs.js:111
+#: extension-development-utility@maestroschan.fr/extension.js:66
 msgid "See GNOME Shell log"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:61
-#: extension-development-utility@maestroschan.fr/prefs.js:115
+#: extension-development-utility@maestroschan.fr/extension.js:74
 msgid "Reload GNOME Shell"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:66
-#: extension-development-utility@maestroschan.fr/prefs.js:119
+#: extension-development-utility@maestroschan.fr/extension.js:79
+msgid "Windowed session (Wayland)"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/extension.js:84
 msgid "'Looking Glass' debugging tool"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:106
+#: extension-development-utility@maestroschan.fr/extension.js:135
 msgid "Restart is not available on Wayland"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/extension.js:109
+#: extension-development-utility@maestroschan.fr/extension.js:138
 msgid "Restarting…"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:57
+#: extension-development-utility@maestroschan.fr/prefs.js:43
+msgid "Appearance"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:46
+msgid "Display as buttons"
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:47
+msgid ""
+"You can display the items as buttons on a single line, or as labeled menu "
+"items."
+msgstr ""
+
+#: extension-development-utility@maestroschan.fr/prefs.js:55
 msgid "Terminal"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:59
+#: extension-development-utility@maestroschan.fr/prefs.js:58
 msgid "Use sudo instead of pkexec"
 msgstr ""
 
@@ -59,30 +73,30 @@ msgid ""
 "pkexec, but some systems don't support it."
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:71
+#: extension-development-utility@maestroschan.fr/prefs.js:72
 msgid "Terminal emulator"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:72
+#: extension-development-utility@maestroschan.fr/prefs.js:73
 msgid "(with command-launching option)"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:73
+#: extension-development-utility@maestroschan.fr/prefs.js:74
 msgid "For example 'gnome-terminal --' or 'tilix -e'"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:74
+#: extension-development-utility@maestroschan.fr/prefs.js:75
 msgid "Let empty for using the system default terminal."
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:78
+#: extension-development-utility@maestroschan.fr/prefs.js:81
 msgid "About"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:81
+#: extension-development-utility@maestroschan.fr/prefs.js:84
 msgid "Report bugs or ideas"
 msgstr ""
 
-#: extension-development-utility@maestroschan.fr/prefs.js:98
+#: extension-development-utility@maestroschan.fr/prefs.js:106
 msgid "Author:"
 msgstr ""

@@ -2,13 +2,10 @@
 
 This extension provides an easy access to features such as:
 
-- Reloading GNOME Shell
-- Looking Glass
+- Reload GNOME Shell
+- Launch a nested GNOME Shell instance on Wayland
 - See GNOME Shell logs
-- Extension preferences
+- Access the extension preferences
+- Looking Glass
 
-### TODO
 
-translations (for accessibility)
-
-customize available buttons ?

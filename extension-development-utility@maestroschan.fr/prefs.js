@@ -16,8 +16,6 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Convenience = Me.imports.convenience;
 
-//------------------------------------------------------------------------------
-
 function init() {
 	Convenience.initTranslations();
 }
@@ -27,7 +25,7 @@ function init() {
 const EDUPrefsWidget = new Lang.Class({
 	Name: "EDUPrefsWidget",
 	Extends: Gtk.Box,
-	
+
 	_init () {
 		this.parent({
 			visible: true,
@@ -39,27 +37,30 @@ const EDUPrefsWidget = new Lang.Class({
 			orientation: Gtk.Orientation.VERTICAL,
 			spacing: 16
 		});
+
 		//----------------------------------------------------------------------
-//		let s1 = this.addSection(null);//_("Buttons"));
-//		let iconView = new Gtk.IconView({ reorderable: true }); // TODO sympa mais inutile
-//		let liststore = new Gtk.ListStore();
-//		liststore.set_column_types([GdkPixbuf.Pixbuf, GObject.TYPE_STRING, GObject.TYPE_STRING]);
-//		iconView.set_model(liststore);
-//		iconView.set_pixbuf_column(0);
-//		iconView.set_text_column(1);
-//		let buttons_array = Convenience.getSettings().get_strv('buttons');
-//		for (let i=0; i < buttons_array.length; i++) {
-//			this._loadButton(buttons_array[i], liststore);
-//		}
-//		iconView.show_all();
-//		s1.add(iconView);
+
+		let section1 = this.addSection(_("Appearance"));
+
+		section1.add(this.addRow(
+			_("Display as buttons"),
+			_("You can display the items as buttons on a single line, or as labeled menu items."),
+			null,
+			this.buildSwitch('items-layout')
+			// TODO 3 states: buttons/submenu/section
+		));
+
 		//----------------------------------------------------------------------
-		let s2 = this.addSection(_("Terminal"));
-		s2.add(this.addRow(
-			_("Use sudo instead of pkexec"), null,
+
+		let section2 = this.addSection(_("Terminal"));
+
+		section2.add(this.addRow(
+			_("Use sudo instead of pkexec"),
+			null,
 			_("Seeing logs often require admin privileges. They can often be obtained using pkexec, but some systems don't support it."),
 			this.buildSwitch('use-sudo')
 		));
+
 		let prefixEntry = new Gtk.Entry({
 			text: SETTINGS.get_string('term-prefix'),
 			visible: true,
@@ -67,65 +68,48 @@ const EDUPrefsWidget = new Lang.Class({
 			secondary_icon_name: 'list-add-symbolic',
 		});
 		prefixEntry.connect('icon-press', this.applyTermPrefix.bind(this));
-		s2.add(this.addRow(
+		section2.add(this.addRow(
 			_("Terminal emulator"),
 			_("(with command-launching option)"),
 			_("For example 'gnome-terminal --' or 'tilix -e'") + '\n'
 			+ _("Let empty for using the system default terminal."),
 			prefixEntry
 		));
+
 		//----------------------------------------------------------------------
-		let s3 = this.addSection(_("About"));
+
+		let section3 = this.addSection(_("About"));
 		
 		let url_button = new Gtk.LinkButton({
 			label: _("Report bugs or ideas"),
 			uri: Me.metadata.url.toString()
 		});
+
 		let version_label = new Gtk.Label({
 			label: ' (v' + Me.metadata.version.toString() + ') ',
 		});
-		s3.add(this.addRow('<b>' + Me.metadata.name.toString() + '</b>', null, null, version_label));
-		let descriptionLabel = new Gtk.Label({
-			label: _(Me.metadata.description.toString()),
-			halign: Gtk.Align.START,
-			wrap: true,
-			use_markup: true,
-			visible: true,
-			margin: 10,
-		});
-		descriptionLabel
-		s3.add(this.addRow(null, Me.metadata.description.toString(), null, null));
-		s3.add(this.addRow(_("Author:") + " Romain F. T.", null, null, url_button));
-		//----------------------------------------------------------------------
+		section3.add(this.addRow(
+			'<b>' + Me.metadata.name.toString() + '</b>',
+			null,
+			null,
+			version_label
+		));
+
+		section3.add(this.addRow(
+			null,
+			Me.metadata.description.toString(),
+			null,
+			null
+		));
+
+		section3.add(this.addRow(
+			_("Author:") + " Romain F. T.",
+			null,
+			null,
+			url_button
+		));
 	},
-	
-	_loadButton (button_id, liststore) {
-		let accessible_name;
-		let icon_name;
-		switch (button_id) {
-			case 'prefs':
-				accessible_name = _("Extensions preferences");
-				icon_name = 'preferences-other-symbolic';
-			break;
-			case 'logs':
-				accessible_name = _("See GNOME Shell log");
-				icon_name = 'utilities-terminal-symbolic';
-			break;
-			case 'restart':
-				accessible_name = _("Reload GNOME Shell");
-				icon_name = 'view-refresh-symbolic';
-			break;
-			case 'lg':
-				accessible_name = _("'Looking Glass' debugging tool");
-				icon_name = 'system-run-symbolic';
-			break;
-			default:
-				return;
-			break;
-		}
-		this.addIcon(liststore, icon_name, accessible_name, button_id);
-	},
-	
+
 	applyTermPrefix (entry, position, event) {
 		SETTINGS.set_string('term-prefix', entry.get_text());
 	},
@@ -136,9 +120,9 @@ const EDUPrefsWidget = new Lang.Class({
 		liststore.set(iter, [0, 1, 2], [pixbuf, label, id]);
 	},
 	
-	addSection (titre) {
+	addSection (sectionTitle) {
 		let frame = new Gtk.Frame({
-			label: titre,
+			label: ' ' + sectionTitle + ' ',
 			label_xalign: 0.1,
 		});
 		let listbox = new Gtk.Box({	orientation: Gtk.Orientation.VERTICAL });
@@ -146,7 +130,7 @@ const EDUPrefsWidget = new Lang.Class({
 		this.add(frame);
 		return listbox;
 	},
-	
+
 	addRow (text, subtext, tooltip, widget) {
 		let rowBox = new Gtk.Box({
 			orientation: Gtk.Orientation.HORIZONTAL,
@@ -187,7 +171,7 @@ const EDUPrefsWidget = new Lang.Class({
 		}
 		return rowBox;
 	},
-	
+
 	buildSwitch (booleanSetting) {
 		let rowSwitch = new Gtk.Switch({ valign: Gtk.Align.CENTER });
 		rowSwitch.set_state(SETTINGS.get_boolean(booleanSetting));
@@ -197,6 +181,8 @@ const EDUPrefsWidget = new Lang.Class({
 		return rowSwitch;
 	},
 });
+
+//------------------------------------------------------------------------------
 
 let SETTINGS = Convenience.getSettings();
 
