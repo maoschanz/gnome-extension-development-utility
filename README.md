@@ -8,4 +8,13 @@ This extension provides an easy access to features such as:
 - Access the extension preferences
 - Looking Glass
 
+![](https://i.imgur.com/64Z2WrA.png)
+
+items can be displayed as inline buttons or as normal menu items
+
+Available in:
+
+- French
+- English
+- Dutch
 
