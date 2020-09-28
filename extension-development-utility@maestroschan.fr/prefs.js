@@ -79,7 +79,7 @@ const EDUPrefsWidget = new Lang.Class({
 		//----------------------------------------------------------------------
 
 		let section3 = this.addSection(_("About"));
-		
+
 		let url_button = new Gtk.LinkButton({
 			label: _("Report bugs or ideas"),
 			uri: Me.metadata.url.toString()
@@ -113,7 +113,7 @@ const EDUPrefsWidget = new Lang.Class({
 	applyTermPrefix (entry, position, event) {
 		SETTINGS.set_string('term-prefix', entry.get_text());
 	},
-	
+
 	addIcon (liststore, icon_name, label, id) {
 		let pixbuf = Gtk.IconTheme.get_default().load_icon(icon_name, 32, 0)
 		let iter = liststore.append();

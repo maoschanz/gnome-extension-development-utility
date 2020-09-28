@@ -130,14 +130,13 @@ class ExtensionSectionBuilder {
 			style_class: 'button',
 			style: 'padding-right: 12px; padding-left: 12px;',
 			y_expand: false,
-			y_fill: true,
 		});
 		newButton.child = new St.Icon({
 			icon_name: iconName,
 			icon_size: 16,
 		});
 		
-		this.superItem.actor.add(newButton, { expand: true, x_fill: false });
+		this.superItem.actor.add(newButton);
 		newButton.connect('clicked', callback.bind(this));
 	}
 
