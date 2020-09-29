@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-19 18:50+0200\n"
+"POT-Creation-Date: 2020-09-29 04:07+0200\n"
 "PO-Revision-Date: 2020-05-24 17:35+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -18,53 +18,53 @@ msgstr ""
 "X-Generator: Poedit 2.3.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: extension-development-utility@maestroschan.fr/extension.js:86
+#: extension-development-utility@maestroschan.fr/extension.js
 msgid "Extensions preferences"
 msgstr "Voorkeuren"
 
-#: extension-development-utility@maestroschan.fr/extension.js:91
+#: extension-development-utility@maestroschan.fr/extension.js
 msgid "See GNOME Shell log"
 msgstr "GNOME Shell-logboek bekijken"
 
-#: extension-development-utility@maestroschan.fr/extension.js:99
+#: extension-development-utility@maestroschan.fr/extension.js
 msgid "Reload GNOME Shell"
 msgstr "GNOME Shell herstarten"
 
-#: extension-development-utility@maestroschan.fr/extension.js:104
+#: extension-development-utility@maestroschan.fr/extension.js
 msgid "Windowed session (Wayland)"
 msgstr "Venstersessie (Wayland)"
 
-#: extension-development-utility@maestroschan.fr/extension.js:109
+#: extension-development-utility@maestroschan.fr/extension.js
 msgid "'Looking Glass' debugging tool"
 msgstr "'Looking Glass'-foutopsporingshulpmiddel"
 
-#: extension-development-utility@maestroschan.fr/extension.js:162
+#: extension-development-utility@maestroschan.fr/extension.js
 msgid "Restarting…"
 msgstr "Bezig met herstarten…"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:43
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Appearance"
 msgstr "Uiterlijk"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:46
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Display as buttons"
 msgstr "Tonen als knoppen"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:47
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid ""
 "You can display the items as buttons on a single line, or as labeled menu "
 "items."
 msgstr "Je kunt items tonen als knoppen of als knoppen met tekst."
 
-#: extension-development-utility@maestroschan.fr/prefs.js:55
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Terminal"
 msgstr "Terminalvenster"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:58
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Use sudo instead of pkexec"
 msgstr "sudo gebruiken in plaats van pkexec"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:60
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid ""
 "Seeing logs often require admin privileges. They can often be obtained using "
 "pkexec, but some systems don't support it."
@@ -73,31 +73,31 @@ msgstr ""
 "logboek. Meestal gaat dit middels pkexec, maar sommige systemen ondersteunen "
 "dit niet."
 
-#: extension-development-utility@maestroschan.fr/prefs.js:72
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Terminal emulator"
 msgstr "Terminalemulator"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:73
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "(with command-launching option)"
 msgstr "(met een opdrachtregeloptie)"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:74
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "For example 'gnome-terminal --' or 'tilix -e'"
 msgstr "Bijvoorbeeld 'gnome-terminal --' of 'tilix -e'"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:75
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Let empty for using the system default terminal."
 msgstr "Laat leeg om de standaardterminal van het systeem te gebruiken."
 
-#: extension-development-utility@maestroschan.fr/prefs.js:81
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "About"
 msgstr "Over"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:84
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Report bugs or ideas"
 msgstr "Meld bugs of deel ideëen"
 
-#: extension-development-utility@maestroschan.fr/prefs.js:106
+#: extension-development-utility@maestroschan.fr/prefs.js
 msgid "Author:"
 msgstr "Maker:"
 
