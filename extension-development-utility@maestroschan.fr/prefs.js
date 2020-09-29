@@ -42,22 +42,22 @@ const EDUPrefsWidget = new Lang.Class({
 
 		let section1 = this.addSection(_("Appearance"));
 
-		section1.add(this.addRow(
+		section1.add(this.buildRow(
 			_("Display as buttons"),
 			_("You can display the items as buttons on a single line, or as labeled menu items."),
 			null,
 			this.buildSwitch('items-layout')
-			// TODO 3 states: buttons/submenu/section
 		));
 
 		//----------------------------------------------------------------------
 
 		let section2 = this.addSection(_("Terminal"));
 
-		section2.add(this.addRow(
+		section2.add(this.buildRow(
 			_("Use sudo instead of pkexec"),
 			null,
-			_("Seeing logs often require admin privileges. They can often be obtained using pkexec, but some systems don't support it."),
+			_("Seeing logs often require admin privileges. They can often be " +
+			       "obtained using pkexec, but some systems don't support it."),
 			this.buildSwitch('use-sudo')
 		));
 
@@ -68,7 +68,7 @@ const EDUPrefsWidget = new Lang.Class({
 			secondary_icon_name: 'list-add-symbolic',
 		});
 		prefixEntry.connect('icon-press', this.applyTermPrefix.bind(this));
-		section2.add(this.addRow(
+		section2.add(this.buildRow(
 			_("Terminal emulator"),
 			_("(with command-launching option)"),
 			_("For example 'gnome-terminal --' or 'tilix -e'") + '\n'
@@ -88,27 +88,29 @@ const EDUPrefsWidget = new Lang.Class({
 		let version_label = new Gtk.Label({
 			label: ' (v' + Me.metadata.version.toString() + ') ',
 		});
-		section3.add(this.addRow(
+		section3.add(this.buildRow(
 			'<b>' + Me.metadata.name.toString() + '</b>',
 			null,
 			null,
 			version_label
 		));
 
-		section3.add(this.addRow(
+		section3.add(this.buildRow(
 			null,
 			Me.metadata.description.toString(),
 			null,
 			null
 		));
 
-		section3.add(this.addRow(
+		section3.add(this.buildRow(
 			_("Author:") + " Romain F. T.",
 			null,
 			null,
 			url_button
 		));
 	},
+
+	//--------------------------------------------------------------------------
 
 	applyTermPrefix (entry, position, event) {
 		SETTINGS.set_string('term-prefix', entry.get_text());
@@ -131,7 +133,7 @@ const EDUPrefsWidget = new Lang.Class({
 		return listbox;
 	},
 
-	addRow (text, subtext, tooltip, widget) {
+	buildRow (text, subtext, tooltip, widget) {
 		let rowBox = new Gtk.Box({
 			orientation: Gtk.Orientation.HORIZONTAL,
 			tooltip_text: tooltip,
@@ -157,16 +159,16 @@ const EDUPrefsWidget = new Lang.Class({
 		});
 		rowLabel2.get_style_context().add_class('dim-label');
 		
-		if (text == null) {
+		if(text == null) {
 			rowBox.pack_start(rowLabel2, false, false, 0);
-		} else if (subtext == null) {
+		} else if(subtext == null) {
 			rowBox.pack_start(rowLabel1, false, false, 0);
 		} else {
 			labelBox.add(rowLabel1);
 			labelBox.add(rowLabel2);
 			rowBox.pack_start(labelBox, false, false, 0);
 		}
-		if (widget != null) {
+		if(widget != null) {
 			rowBox.pack_end(widget, false, false, 0);
 		}
 		return rowBox;

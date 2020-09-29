@@ -1,15 +1,12 @@
 // GPLv3
 
 const St = imports.gi.St;
-const Panel = imports.ui.panel;
 const Main = imports.ui.main;
-const Shell = imports.gi.Shell;
 const Meta = imports.gi.Meta;
+const Clutter = imports.gi.Clutter;
 const PopupMenu = imports.ui.popupMenu;
 const Gio = imports.gi.Gio;
-const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
-const Slider = imports.ui.slider;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -32,15 +29,15 @@ function init() {
 function getCommandPrefix(asAdmin) {
 	let userPrefix = Convenience.getSettings().get_string('term-prefix');
 	let command = '';
-	if (userPrefix == '') {
+	if(userPrefix == '') {
 		let exec1 = terminalSettings.get_string(EXEC_KEY);
 		let exec_arg = terminalSettings.get_string(EXEC_ARG_KEY);
 		command = exec1 + ' ' + exec_arg;
 	} else {
 		command = userPrefix;
 	}
-	if (asAdmin) {
-		if (Convenience.getSettings().get_boolean('use-sudo')) {
+	if(asAdmin) {
+		if(Convenience.getSettings().get_boolean('use-sudo')) {
 			command = command + ' sudo ';
 		} else {
 			command = command + ' pkexec ';
@@ -58,7 +55,7 @@ class ExtensionSectionBuilder {
 	constructor(menuSection) {
 		this.parentSection = menuSection;
 		let showAsButtons = Convenience.getSettings().get_boolean('items-layout');
-		if (showAsButtons) {
+		if(showAsButtons) {
 			this.superItem = new PopupMenu.PopupBaseMenuItem({
 				reactive: false,
 				can_focus: false
@@ -93,7 +90,7 @@ class ExtensionSectionBuilder {
 				callback = this._seeLogs;
 			break;
 			case 'restart':
-				if (Meta.is_wayland_compositor()) {
+				if(Meta.is_wayland_compositor()) {
 					return;
 				}
 				accessibleName = _("Reload GNOME Shell");
@@ -114,7 +111,7 @@ class ExtensionSectionBuilder {
 				return;
 			break;
 		}
-		if (showAsButtons) {
+		if(showAsButtons) {
 			this._addButton(accessibleName, iconName, callback);
 		} else {
 			this.parentSection.addAction(accessibleName, callback, iconName);
@@ -130,13 +127,15 @@ class ExtensionSectionBuilder {
 			style_class: 'button',
 			style: 'padding-right: 12px; padding-left: 12px;',
 			y_expand: false,
+			x_expand: true,
+			x_align: Clutter.ActorAlign.CENTER,
 		});
 		newButton.child = new St.Icon({
 			icon_name: iconName,
 			icon_size: 16,
 		});
-		
-		this.superItem.actor.add(newButton);
+
+		this.superItem.actor.add_child(newButton);
 		newButton.connect('clicked', callback.bind(this));
 	}
 
@@ -144,6 +143,8 @@ class ExtensionSectionBuilder {
 
 	_openPrefs() {
 		Util.trySpawnCommandLine('gnome-shell-extension-prefs');
+		// TODO as soon as it breaks, use 'gnome-extensions-app' and change the
+		// supported versions starting at 3.36
 		Main.panel.statusArea.aggregateMenu.menu.close();
 	}
 
@@ -154,7 +155,7 @@ class ExtensionSectionBuilder {
 
 	_reloadGS() {
 		Main.panel.statusArea.aggregateMenu.menu.close();
-		if (Meta.is_wayland_compositor()) {
+		if(Meta.is_wayland_compositor()) {
 			// Should never be executed since the button isn't shown on Wayland
 			return;
 		}

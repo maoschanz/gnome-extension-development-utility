@@ -14,7 +14,9 @@ items can be displayed as inline buttons or as normal menu items
 
 Available in:
 
-- French
-- English
 - Dutch
+- English
+- French
+
+Compatible with GS 3.26 to 3.38
 
