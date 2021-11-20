@@ -10,7 +10,6 @@ const Util = imports.misc.util;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
 
 const Gettext = imports.gettext.domain('extension-development-utility');
 const _ = Gettext.gettext;
@@ -22,12 +21,12 @@ const EXEC_ARG_KEY = 'exec-arg';
 let terminalSettings;
 
 function init() {
-	Convenience.initTranslations();
+	ExtensionUtils.initTranslations();
 	terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
 }
 
 function getCommandPrefix(asAdmin) {
-	let userPrefix = Convenience.getSettings().get_string('term-prefix');
+	let userPrefix = ExtensionUtils.getSettings().get_string('term-prefix');
 	let command = '';
 	if(userPrefix == '') {
 		let exec1 = terminalSettings.get_string(EXEC_KEY);
@@ -37,7 +36,7 @@ function getCommandPrefix(asAdmin) {
 		command = userPrefix;
 	}
 	if(asAdmin) {
-		if(Convenience.getSettings().get_boolean('use-sudo')) {
+		if(ExtensionUtils.getSettings().get_boolean('use-sudo')) {
 			command = command + ' sudo ';
 		} else {
 			command = command + ' pkexec ';
@@ -54,7 +53,7 @@ class ExtensionSectionBuilder {
 
 	constructor(menuSection) {
 		this.parentSection = menuSection;
-		let showAsButtons = Convenience.getSettings().get_boolean('items-layout');
+		let showAsButtons = ExtensionUtils.getSettings().get_boolean('items-layout');
 		if(showAsButtons) {
 			this.superItem = new PopupMenu.PopupBaseMenuItem({
 				reactive: false,
@@ -64,7 +63,7 @@ class ExtensionSectionBuilder {
 		}
 
 		this._terminalSettings = new Gio.Settings({ schema_id: TERMINAL_SCHEMA });
-		let buttons_array = Convenience.getSettings().get_strv('buttons');
+		let buttons_array = ExtensionUtils.getSettings().get_strv('buttons');
 		for (let i=0; i < buttons_array.length; i++) {
 			this._loadActionItem(buttons_array[i], showAsButtons);
 		}

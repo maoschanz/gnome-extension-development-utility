@@ -14,10 +14,9 @@ const _ = Gettext.gettext;
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
 
 function init() {
-	Convenience.initTranslations();
+	ExtensionUtils.initTranslations();
 }
 
 //------------------------------------------------------------------------------
@@ -186,7 +185,7 @@ const EDUPrefsWidget = new Lang.Class({
 
 //------------------------------------------------------------------------------
 
-let SETTINGS = Convenience.getSettings();
+let SETTINGS = ExtensionUtils.getSettings();
 
 function buildPrefsWidget() {
 	let widget = new EDUPrefsWidget();

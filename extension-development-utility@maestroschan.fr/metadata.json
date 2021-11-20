@@ -5,10 +5,6 @@
 	"gettext-domain": "extension-development-utility",
 	"settings-schema": "org.gnome.shell.extensions.extension-development-utility",
 	"shell-version": [
-		"3.26",
-		"3.28",
-		"3.30",
-		"3.32",
 		"3.34",
 		"3.36",
 		"3.38"
