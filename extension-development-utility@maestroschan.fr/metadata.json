@@ -5,9 +5,9 @@
 	"gettext-domain": "extension-development-utility",
 	"settings-schema": "org.gnome.shell.extensions.extension-development-utility",
 	"shell-version": [
-		"3.34",
-		"3.36",
-		"3.38"
+		"40",
+		"41",
+		"42"
 	],
 	"url": "https://github.com/maoschanz/gnome-extension-development-utility",
 	"uuid": "extension-development-utility@maestroschan.fr",

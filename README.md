@@ -18,5 +18,5 @@ Available in:
 - English
 - French
 
-Compatible with GS 3.34 to 3.38
+Compatible with GS 40 to 42
 

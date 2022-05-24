@@ -27,10 +27,9 @@ const EDUPrefsWidget = new Lang.Class({
 
 	_init () {
 		this.parent({
-			visible: true,
-			can_focus: false,
-			margin_left: 30,
-			margin_right: 30,
+			can_focus: true,
+			margin_start: 30,
+			margin_end: 30,
 			margin_top: 18,
 			margin_bottom: 18,
 			orientation: Gtk.Orientation.VERTICAL,
@@ -41,7 +40,7 @@ const EDUPrefsWidget = new Lang.Class({
 
 		let section1 = this.addSection(_("Appearance"));
 
-		section1.add(this.buildRow(
+		section1.append(this.buildRow(
 			_("Display as buttons"),
 			_("You can display the items as buttons on a single line, or as labeled menu items."),
 			null,
@@ -52,7 +51,7 @@ const EDUPrefsWidget = new Lang.Class({
 
 		let section2 = this.addSection(_("Terminal"));
 
-		section2.add(this.buildRow(
+		section2.append(this.buildRow(
 			_("Use sudo instead of pkexec"),
 			null,
 			_("Seeing logs often require admin privileges. They can often be " +
@@ -62,12 +61,12 @@ const EDUPrefsWidget = new Lang.Class({
 
 		let prefixEntry = new Gtk.Entry({
 			text: SETTINGS.get_string('term-prefix'),
-			visible: true,
 			valign: Gtk.Align.CENTER,
 			secondary_icon_name: 'list-add-symbolic',
+			can_focus: true,
 		});
 		prefixEntry.connect('icon-press', this.applyTermPrefix.bind(this));
-		section2.add(this.buildRow(
+		section2.append(this.buildRow(
 			_("Terminal emulator"),
 			_("(with command-launching option)"),
 			_("For example 'gnome-terminal --' or 'tilix -e'") + '\n'
@@ -87,21 +86,21 @@ const EDUPrefsWidget = new Lang.Class({
 		let version_label = new Gtk.Label({
 			label: ' (v' + Me.metadata.version.toString() + ') ',
 		});
-		section3.add(this.buildRow(
+		section3.append(this.buildRow(
 			'<b>' + Me.metadata.name.toString() + '</b>',
 			null,
 			null,
 			version_label
 		));
 
-		section3.add(this.buildRow(
+		section3.append(this.buildRow(
 			null,
 			Me.metadata.description.toString(),
 			null,
 			null
 		));
 
-		section3.add(this.buildRow(
+		section3.append(this.buildRow(
 			_("Author:") + " Romain F. T.",
 			null,
 			null,
@@ -127,8 +126,8 @@ const EDUPrefsWidget = new Lang.Class({
 			label_xalign: 0.1,
 		});
 		let listbox = new Gtk.Box({	orientation: Gtk.Orientation.VERTICAL });
-		frame.add(listbox);
-		this.add(frame);
+		frame.set_child(listbox);
+		this.append(frame);
 		return listbox;
 	},
 
@@ -137,38 +136,39 @@ const EDUPrefsWidget = new Lang.Class({
 			orientation: Gtk.Orientation.HORIZONTAL,
 			tooltip_text: tooltip,
 			spacing: 15,
-			margin: 10,
-			visible: true,
+			margin_top: 10,
+			margin_bottom: 10,
+			margin_start: 10,
+			margin_end: 10,
 		});
 		let labelBox = new Gtk.Box({
 			orientation: Gtk.Orientation.VERTICAL,
-			visible: true,
 		});
 		let rowLabel1 = new Gtk.Label({
 			label: text,
 			halign: Gtk.Align.START,
 			use_markup: true,
-			visible: true,
 		});
 		let rowLabel2 = new Gtk.Label({
 			label: subtext,
 			halign: Gtk.Align.START,
 			wrap: true,
-			visible: true,
 		});
 		rowLabel2.get_style_context().add_class('dim-label');
 		
 		if(text == null) {
-			rowBox.pack_start(rowLabel2, false, false, 0);
+			rowBox.append(rowLabel2);
 		} else if(subtext == null) {
-			rowBox.pack_start(rowLabel1, false, false, 0);
+			rowBox.append(rowLabel1);
 		} else {
-			labelBox.add(rowLabel1);
-			labelBox.add(rowLabel2);
-			rowBox.pack_start(labelBox, false, false, 0);
+			labelBox.append(rowLabel1);
+			labelBox.append(rowLabel2);
+			rowBox.append(labelBox);
 		}
 		if(widget != null) {
-			rowBox.pack_end(widget, false, false, 0);
+			widget.set_halign(Gtk.Align.END);
+			widget.set_hexpand(true);
+			rowBox.append(widget);
 		}
 		return rowBox;
 	},
@@ -188,9 +188,7 @@ const EDUPrefsWidget = new Lang.Class({
 let SETTINGS = ExtensionUtils.getSettings();
 
 function buildPrefsWidget() {
-	let widget = new EDUPrefsWidget();
-	widget.show_all();
-	return widget;
+	return new EDUPrefsWidget();
 }
 
 
