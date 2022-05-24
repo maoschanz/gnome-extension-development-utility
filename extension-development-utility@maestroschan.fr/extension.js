@@ -141,9 +141,9 @@ class ExtensionSectionBuilder {
 	// Signal callbacks --------------------------------------------------------
 
 	_openPrefs() {
-		Util.trySpawnCommandLine('gnome-shell-extension-prefs');
-		// TODO as soon as it breaks, use 'gnome-extensions-app' and change the
-		// supported versions starting at 3.36
+		// TODO try/catch and send notif to say the app isn't there?
+		// what if it's installed as a flatpak??
+		Util.trySpawnCommandLine('gnome-extensions-app');
 		Main.panel.statusArea.aggregateMenu.menu.close();
 	}
 
