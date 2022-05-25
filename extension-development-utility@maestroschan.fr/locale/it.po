@@ -1,0 +1,101 @@
+# ITALIAN TRANSLATION FOR GNOME-EXTENSION-DEVELOPMENT-UTILITY.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# ALBANO BATTISTELLA <ALBANO_BATTISTELLA@HOTMAIL.COM>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-24 17:14+0200\n"
+"PO-Revision-Date: 2022-05-25 17:47+0100\n"
+"Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: extension-development-utility@maestroschan.fr/extension.js
+msgid "Extensions preferences"
+msgstr "Preferenze estensioni"
+
+#: extension-development-utility@maestroschan.fr/extension.js
+msgid "See GNOME Shell log"
+msgstr "Vedi log della shell di GNOME"
+
+#: extension-development-utility@maestroschan.fr/extension.js
+msgid "Reload GNOME Shell"
+msgstr "Ricarica la shell di GNOME"
+
+#: extension-development-utility@maestroschan.fr/extension.js
+msgid "Windowed session (Wayland)"
+msgstr "Sessione in finestra (Wayland)"
+
+#: extension-development-utility@maestroschan.fr/extension.js
+msgid "'Looking Glass' debugging tool"
+msgstr "Strumento di debug 'Looking Glass'"
+
+#: extension-development-utility@maestroschan.fr/extension.js
+msgid "Restarting…"
+msgstr "Riavvio…"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Appearance"
+msgstr "Aspetto"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Display as buttons"
+msgstr "Visualizza come pulsanti"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid ""
+"You can display the items as buttons on a single line, or as labeled menu "
+"items."
+msgstr ""
+"Puoi visualizzare gli elementi come pulsanti su una singola riga o come menu etichettato "
+"Oggetti."
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Terminal"
+msgstr "Terminale"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Use sudo instead of pkexec"
+msgstr "Usa sudo invece di pkexec"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid ""
+"Seeing logs often require admin privileges. They can often be obtained using "
+"pkexec, but some systems don't support it."
+msgstr ""
+"La visualizzazione dei registri spesso richiede privilegi di amministratore. Spesso possono essere ottenuti utilizzando "
+"pkexec, ma alcuni sistemi non lo supportano."
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Terminal emulator"
+msgstr "Emulatore di terminale"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "(with command-launching option)"
+msgstr "(con opzione di avvio dei comandi)"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "For example 'gnome-terminal --' or 'tilix -e'"
+msgstr "Ad esempio 'gnome-terminal --' o 'tilix -e'"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Let empty for using the system default terminal."
+msgstr "Lascia vuoto per utilizzare il terminale predefinito del sistema."
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "About"
+msgstr "Informazioni"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Report bugs or ideas"
+msgstr "Segnala bug o idee"
+
+#: extension-development-utility@maestroschan.fr/prefs.js
+msgid "Author:"
+msgstr "Autore:"
